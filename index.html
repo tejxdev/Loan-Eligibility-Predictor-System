@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loan Eligibility Predictor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #83a4d4, #b6fbff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-box {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+      width: 400px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      text-align: center;
+      font-size: 18px;
+      margin-top: 20px;
+      color: #333;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-box">
+    <h2>Loan Eligibility Predictor</h2>
+    <form action="/predict" method="post">
+      <label>Gender</label>
+      <select name="Gender" required>
+        <option value="1">Male</option>
+        <option value="0">Female</option>
+      </select>
+
+      <label>Married</label>
+      <select name="Married" required>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <label>Education</label>
+      <select name="Education" required>
+        <option value="1">Graduate</option>
+        <option value="0">Not Graduate</option>
+      </select>
+
+      <label>Self Employed</label>
+      <select name="Self_Employed" required>
+        <option value="1">Yes</option>
+        <option value="0">No</option>
+      </select>
+
+      <label>Applicant Income</label>
+      <input type="number" name="ApplicantIncome" required>
+
+      <label>Coapplicant Income</label>
+      <input type="number" name="CoapplicantIncome" required>
+
+      <label>Loan Amount</label>
+      <input type="number" name="LoanAmount" required>
+
+      <label>Loan Amount Term</label>
+      <input type="number" name="Loan_Amount_Term" required>
+
+      <label>Credit History</label>
+      <select name="Credit_History" required>
+        <option value="1">Good (1)</option>
+        <option value="0">Bad (0)</option>
+      </select>
+
+      <label>Property Area</label>
+      <select name="Property_Area" required>
+        <option value="0">Rural</option>
+        <option value="1">Semiurban</option>
+        <option value="2">Urban</option>
+      </select>
+
+      <button type="submit">Check Eligibility</button>
+    </form>
+    {% if prediction_text %}
+      <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
